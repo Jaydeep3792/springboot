@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.assignment.constants.ApplicationConstants;
 import com.assignment.model.User;
 import com.assignment.repository.UserDAO;
 
@@ -48,13 +49,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 		User user = userDAO.findByUsername(userId);
 		if (user == null) {
-			throw new UsernameNotFoundException("Invalid username or password.");
+			throw new UsernameNotFoundException(ApplicationConstants.INVALID_USER_PASSWORD);
 		}
 		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
 				getAuthority());
 	}
 
 	private List<SimpleGrantedAuthority> getAuthority() {
-		return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		return Arrays.asList(new SimpleGrantedAuthority(ApplicationConstants.ADMIN_ROLE));
 	}
 }

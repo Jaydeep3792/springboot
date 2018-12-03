@@ -8,7 +8,7 @@ public interface UserNotesService {
 
 	List<UserNote> getAllUserNotes(int userId);
 	
-    UserNote createUserNote(UserNote userNote);
+    UserNote createUserNote(UserNote userNote,int userId);
 
     String updateUserNote(UserNote userNote,int currentUserId);
 

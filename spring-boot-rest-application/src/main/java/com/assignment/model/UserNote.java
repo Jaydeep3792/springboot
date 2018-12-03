@@ -10,15 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "UserNote")
+@Table(name = "user_note")
 public class UserNote {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "noteId")
+	@Column(name = "note_id")
 	private int noteId;
 
-	@Column(name = "userId")
+	@Column(name = "user_id")
 	private int userId;
 
 	@Column(name = "title")
@@ -27,10 +27,10 @@ public class UserNote {
 	@Column(name = "notes")
 	private String notes;
 
-	@Column(name = "createTime")
+	@Column(name = "create_time")
 	private Timestamp createTime;
 
-	@Column(name = "updateTime")
+	@Column(name = "update_time")
 	private Timestamp updateTime;
 
 	public int getNoteId() {

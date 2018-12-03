@@ -52,7 +52,8 @@ public class UserNotesController {
 	 */
 	@PostMapping
 	UserNote addUserNote(@RequestBody UserNote userNote) {
-		return this.userNotesService.createUserNote(userNote);
+		User currentUser = userService.getUserDetails();
+		return this.userNotesService.createUserNote(userNote, currentUser.getUserId());
 	}
 
 	/*

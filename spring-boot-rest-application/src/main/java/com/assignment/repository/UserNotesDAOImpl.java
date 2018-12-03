@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.assignment.constants.ApplicationConstants;
 import com.assignment.model.UserNote;
 
 @Repository
@@ -32,7 +33,7 @@ public class UserNotesDAOImpl implements UserNotesDAO {
 	@Override
 	public List<UserNote> getAllUserNotes(int userId) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UserNote.class)
-				.add(Restrictions.eq("userId", userId));
+				.add(Restrictions.eq(ApplicationConstants.USERID, userId));
 		return criteria.list();
 	}
 
@@ -57,9 +58,9 @@ public class UserNotesDAOImpl implements UserNotesDAO {
 	public String updateUserNote(UserNote newUserNote) {
 		if (newUserNote != null) {
 			sessionFactory.getCurrentSession().update(newUserNote);
-			return "Record Updated";
+			return ApplicationConstants.RECORD_UPDATED;
 		}
-		return "Failed to Update";
+		return ApplicationConstants.FAILED_TO_UPDATE;
 	}
 
 	/*
@@ -71,9 +72,9 @@ public class UserNotesDAOImpl implements UserNotesDAO {
 	public String deleteUserNote(UserNote currentNote) {
 		if (currentNote != null) {
 			sessionFactory.getCurrentSession().delete(currentNote);
-			return "Record Deleted";
+			return ApplicationConstants.RECORD_DELETED;
 		}
-		return "Failed to Delete";
+		return ApplicationConstants.FAILED_TO_DELETE;
 	}
 
 	/*
@@ -84,7 +85,7 @@ public class UserNotesDAOImpl implements UserNotesDAO {
 	@Override
 	public UserNote getNote(int noteId) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(UserNote.class)
-				.add(Restrictions.eq("noteId", noteId));
+				.add(Restrictions.eq(ApplicationConstants.NOTEID, noteId));
 		UserNote note = (UserNote) criteria.uniqueResult();
 		return note;
 	}

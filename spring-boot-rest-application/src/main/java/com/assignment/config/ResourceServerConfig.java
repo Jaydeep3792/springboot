@@ -23,6 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	/**
 	 * Below method is used for matching the url-pattern to apply security
+	 * Handles authenticated request from app that has access token
 	 */
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
