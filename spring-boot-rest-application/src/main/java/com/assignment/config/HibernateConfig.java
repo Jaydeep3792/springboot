@@ -33,6 +33,9 @@ public class HibernateConfig {
 	
 	@Value("${spring.jpa.properties.hibernate.dialect}")
 	private String dialect;
+	
+	@Value("${spring.jpa.properties.hibernate.format_sql :false}")
+	private boolean hibernate_format_sql;
 
     @Bean(name="sessionFactory")
     public SessionFactory sessionFactory() {
@@ -55,11 +58,8 @@ public class HibernateConfig {
 	
 	private Properties getHibernateProperties() {
 		Properties prop = new Properties();
-		prop.put("hibernate.format_sql",true);
+		prop.put("hibernate.format_sql",hibernate_format_sql);
 		prop.put("hibernate.show_sql", showsql);
-		prop.put("hibernate.jdbc.batch_size", 50);
-		prop.put("hibernate.order_inserts", true);
-		prop.put("hibernate.order_updates", true);
 		prop.put("hibernate.dialect", dialect);
 		return prop;
 	}

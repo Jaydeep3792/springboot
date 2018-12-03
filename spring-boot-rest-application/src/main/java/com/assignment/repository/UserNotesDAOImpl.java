@@ -2,6 +2,8 @@ package com.assignment.repository;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -12,6 +14,7 @@ import com.assignment.model.UserNote;
 @Repository
 public class UserNotesDAOImpl implements UserNotesDAO {
 
+	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 
 	// Setter injection
